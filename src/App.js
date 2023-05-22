@@ -2,10 +2,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/views/Login";
 import Register from "./components/views/Register";
 import Forgot from "./components/views/Forgot";
+import Header from "./components/Header";
 
 const Auth = () => {
   return (
     <Router>
+      <div className="content">
+        <Header />
+      </div>
       <Switch>
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />

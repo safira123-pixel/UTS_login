@@ -6,7 +6,7 @@ class Form {
      * @returns boolean
      */
     static validUsername(str) {
-        let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        const regex = /^[a-zA-Z0-9_]{5,15}$/;
         return regex.test(str);
     }
 

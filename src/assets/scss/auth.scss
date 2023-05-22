@@ -2,7 +2,7 @@
 
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import '~bootstrap/scss/bootstrap.scss';
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
 
 
 html,
@@ -11,6 +11,14 @@ body,
     height: 100%;
 }
 
+.header {
+	background-color: #537188;
+	padding: 30px 40px;
+	color: white;
+	text-align: center;
+
+  }
+
 .btn {
 
     &:focus,
@@ -18,6 +26,13 @@ body,
         outline: none !important;
         box-shadow: none !important;
     }
+	background-color: #537188;
+}
+
+p {
+	font-family: 'Poppins';
+	font-size: xx-large;
+	letter-spacing: 2px;
 }
 
 a {
