@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import WaterLevelChart from './WaterLevelChart';
+import mqtt from 'mqtt';
+import Header from './HeaderDashboard';
 
 function Dashboard() {
   const [waterLevel, setWaterLevel] = useState(0);
@@ -7,20 +8,43 @@ function Dashboard() {
   const [isBuzzerOn, setBuzzerOn] = useState(false);
 
   useEffect(() => {
-    // Simulate changing water level, pump status, and buzzer status
-    const interval = setInterval(() => {
-      const newWaterLevel = Math.random() * 100; // Replace with MQTT data
-      setWaterLevel(newWaterLevel);
+    // Membuat koneksi ke broker MQTT
+    const client = mqtt.connect('https://www.hivemq.com/public-mqtt-broker/');
 
-      const newPumpStatus = Math.random() > 0.5; // Replace with MQTT data
-      setPumpOn(newPumpStatus);
+    // Menangani event ketika terhubung ke broker
+    client.on('connect', () => {
+      console.log('Terhubung ke broker MQTT');
 
-      const newBuzzerStatus = Math.random() > 0.5; // Replace with MQTT data
-      setBuzzerOn(newBuzzerStatus);
-    }, 1000);
+      // Berlangganan topik
+      client.subscribe('water-level');
+      client.subscribe('pump-status');
+      client.subscribe('buzzer-status');
+    });
 
+    // Menangani pesan yang diterima dari topik yang di-subscribe
+    client.on('message', (topic, payload) => {
+      const message = payload.toString();
+      console.log(`Pesan baru pada topik ${topic}: ${message}`);
+
+      // Memperbarui state berdasarkan topik pesan
+      switch (topic) {
+        case 'water-level':
+          setWaterLevel(parseFloat(message));
+          break;
+        case 'pump-status':
+          setPumpOn(message === 'ON');
+          break;
+        case 'buzzer-status':
+          setBuzzerOn(message === 'ON');
+          break;
+        default:
+          break;
+      }
+    });
+
+    // Membersihkan koneksi saat komponen unmount
     return () => {
-      clearInterval(interval);
+      client.end();
     };
   }, []);
 
@@ -36,8 +60,10 @@ function Dashboard() {
 
   return (
     <div className="Dashboard">
-      <h1>Water Level Dashboard</h1>
+    <div><Header/> </div>
+    <div className="column1">
       <h2>Water Level: {waterLevel} cm</h2>
+      </div>
       <div className="Indicators">
         <div className={`Indicator ${isPumpOn ? 'active' : ''}`}>
           <h3>Pump</h3>
@@ -51,7 +77,6 @@ function Dashboard() {
       <div className={`LevelIndicator ${getLevelIndicatorClass()}`}>
         {waterLevel}
       </div>
-      <WaterLevelChart />
     </div>
   );
 }

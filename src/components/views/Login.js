@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Form from '../../utilities/Forms'
+import Header from "../Header";
+
 
 const Login = () => {
 
@@ -9,6 +11,7 @@ const Login = () => {
     const [remember, setRemember] = useState(false);
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
+    const history = useHistory();
 
     const validateLogin = () => {
         let isValid = true;
@@ -57,13 +60,17 @@ const Login = () => {
         }
     }
 
+    const handleLogin = () => {
+        history.push('/dashboard');
+    }
+
     return (
         <div className="row g-0 auth-wrapper">
+            <div><Header/> </div>
             <div className="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
                 <div className="auth-background-holder"></div>
                 <div className="auth-background-mask"></div>
             </div>
-
             <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
                 <div className="d-flex flex-column align-content-end">
                     <div className="auth-body mx-auto">
@@ -120,7 +127,7 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div className="text-center">
-                                    <button type="submit" className="btn btn-primary w-100 theme-btn mx-auto">Log In</button>
+                                    <button type="submit" className="btn btn-primary w-100 theme-btn mx-auto"onClick={handleLogin}>Log In</button>
                                 </div>
                             </form>
 

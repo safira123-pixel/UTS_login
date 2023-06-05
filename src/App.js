@@ -8,9 +8,6 @@ import Dashboard from "./Dashboard";
 const Auth = () => {
   return (
     <Router>
-      <div className="content">
-        <Header />
-      </div>
       <Switch>
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
