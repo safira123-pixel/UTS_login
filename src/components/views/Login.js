@@ -61,7 +61,7 @@ const Login = () => {
     }
 
     const handleLogin = () => {
-        window.open('http://localhost/dashboard', '_blank');
+        window.open('http://192.168.18.252:8000', '_blank');
     }
 
     return (
