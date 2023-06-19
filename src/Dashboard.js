@@ -61,21 +61,27 @@ function Dashboard() {
   return (
     <div className="Dashboard">
     <div><Header/> </div>
-    <div className="column1">
+    <div className="rectangle1">
+    <h3>Water Level Indicator</h3>
       <h2>Water Level: {waterLevel} cm</h2>
       </div>
-      <div className="Indicators">
+      <div className="Rectangle2">
+      <h3>Pump Indicator</h3>
         <div className={`Indicator ${isPumpOn ? 'active' : ''}`}>
-          <h3>Pump</h3>
           {isPumpOn ? <span className="status">ON</span> : <span className="status">OFF</span>}
         </div>
+        </div>
+        <div className="Rectangle3">
+        <h3>Buzzer Indicator</h3>
         <div className={`Indicator ${isBuzzerOn ? 'active' : ''}`}>
-          <h3>Buzzer</h3>
           {isBuzzerOn ? <span className="status">ON</span> : <span className="status">OFF</span>}
         </div>
-      </div>
+        </div>
+        <div className="Rectangle4">
+        <h3>Water Level</h3>
       <div className={`LevelIndicator ${getLevelIndicatorClass()}`}>
         {waterLevel}
+      </div>
       </div>
     </div>
   );

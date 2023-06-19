@@ -1,0 +1,99 @@
+@import "./variables";
+
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .water-level-indicator {
+    width: 200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  
+    h2 {
+      margin-bottom: 10px;
+    }
+  
+    .water-level {
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 4px;
+  
+      &.high {
+        background-color: red;
+        color: #fff;
+      }
+  
+      &.medium {
+        background-color: orange;
+        color: #fff;
+      }
+  
+      &.low {
+        background-color: green;
+        color: #fff;
+      }
+    }
+  }
+  
+  .status-indicators {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+  
+    .pump-indicator,
+    .buzzer-indicator {
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: center;
+  
+      &.on {
+        background-color: green;
+        color: #fff;
+      }
+  
+      &.off {
+        background-color: red;
+        color: #fff;
+      }
+    }
+  }
+  
+  .water-level-history {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  
+    h2 {
+      margin-bottom: 10px;
+    }
+  
+    p {
+      margin-top: 20px;
+      text-align: center;
+    }
+  
+    .chart-container {
+      height: 300px;
+    }
+  }
