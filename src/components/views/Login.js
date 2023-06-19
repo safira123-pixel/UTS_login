@@ -61,7 +61,7 @@ const Login = () => {
     }
 
     const handleLogin = () => {
-        history.push('/dashboard');
+        window.open('http://localhost/dashboard', '_blank');
     }
 
     return (
